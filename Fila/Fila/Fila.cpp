@@ -77,10 +77,10 @@ void inicializar()
 
 void insere()
 {
-	// aloca memoria dinamicamente para o novo elemento
+	// aloca memória dinamicamente para o novo elemento
 	NO* novo = (NO*)malloc(sizeof(NO));
-	if (novo == NULL)
-	{
+	if (novo == NULL) {
+		cout << "Erro ao alocar memória!\n";
 		return;
 	}
 
@@ -88,13 +88,36 @@ void insere()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
+	if (inicio == NULL) {
+		inicio = novo;
+		fim = novo;
+	}
+	else {
+		fim->prox = novo;
+		fim = novo;
+	}
+
+	cout << "Elemento inserido na fila.\n";
+
 
 }
 
 void remove()
 {
+	if (inicio == NULL) {
+		cout << "Fila Vazia\n";
+		return;
+	}
 
+	
+	NO* paraExcluir = inicio;
+	cout << "Elemento removido: " << inicio->valor << endl;
 
+	inicio = inicio->prox;
 
+	free(paraExcluir);
+
+	if (inicio == NULL) {
+		fim = NULL;
 }
 
